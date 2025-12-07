@@ -6,9 +6,10 @@ export type ViewState = 'search' | 'list' | 'chat' | 'notifications' | 'likes' |
 interface NavbarProps {
   onNavigate: (view: ViewState) => void;
   activeView: ViewState;
+  unreadCount?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onNavigate, activeView }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onNavigate, activeView, unreadCount = 0 }) => {
   
   const getTabClass = (viewName: ViewState) => {
     // Treat 'chat' as part of the 'list' tab group for visual indication
@@ -43,9 +44,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, activeView }) => {
       >
         <div className="relative">
           <MessageCircle className={`${getIconColor('list')} w-7 h-7`} />
-          <div className="absolute -top-1 -right-2 bg-white text-[#8c67a8] text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center shadow-sm">
-            8
-          </div>
+          {unreadCount > 0 && (
+            <div className="absolute -top-1 -right-2 bg-white text-[#8c67a8] text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center shadow-sm">
+              {unreadCount > 99 ? '99+' : unreadCount}
+            </div>
+          )}
         </div>
       </div>
 
