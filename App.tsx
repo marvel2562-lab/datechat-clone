@@ -136,9 +136,16 @@ const playNotificationSound = () => {
 };
 
 const App: React.FC = () => {
+  // Check for persistent lock on mount
+  const [isCtaLocked, setIsCtaLocked] = useState(() => {
+    return localStorage.getItem('ctaLocked') === 'true';
+  });
+
   // START WITH CHAT VIEW OPEN ON EDITA
   const [view, setView] = useState<ViewState>('chat');
-  const [showCta, setShowCta] = useState(false);
+  
+  // Initialize showCta based on lock state
+  const [showCta, setShowCta] = useState(isCtaLocked);
   
   // Current active chat user (Start with Edita)
   const [currentUser, setCurrentUser] = useState<UserProfile>(EDITA_USER);
@@ -334,6 +341,9 @@ const App: React.FC = () => {
         if ((responseText?.includes('kavu') || responseText?.includes('kávu') || responseText?.includes('setka') || responseText?.includes('sejit')) && currentUser.id === chatId) {
             setTimeout(() => {
                 setShowCta(true);
+                // LOCK THE CTA
+                setIsCtaLocked(true);
+                localStorage.setItem('ctaLocked', 'true');
             }, 2000); 
         }
 
@@ -387,7 +397,7 @@ const App: React.FC = () => {
         return <ChatListView chats={activeChats} onChatSelect={handleChatSelect} />;
       case 'chat':
         return (
-          <>
+          <div className="flex-1 flex flex-col min-h-0 relative">
             <ChatHeader user={currentUser} onBack={() => setView('list')} />
             <div className="flex-1 overflow-y-auto bg-white scrollbar-hide relative">
               {currentMessages.length === 0 ? (
@@ -412,7 +422,7 @@ const App: React.FC = () => {
               )}
             </div>
             <ChatInput onSendMessage={handleSendMessage} />
-          </>
+          </div>
         );
       case 'search':
         return <SearchView onTriggerCta={handleTriggerCta} />;
@@ -426,7 +436,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-white max-w-md mx-auto shadow-2xl overflow-hidden relative">
+    // Main Container: h-[100dvh] adapts to dynamic mobile URL bars
+    <div className="flex flex-col h-[100dvh] w-full bg-white max-w-md mx-auto shadow-2xl overflow-hidden relative">
       <Navbar onNavigate={handleNavigate} activeView={view} unreadCount={totalUnreadCount} />
       
       {/* Notifications Layer - Only show if NOT in chat */}
@@ -436,15 +447,17 @@ const App: React.FC = () => {
           onClose={() => setNotification(null)} 
           onClick={() => {
             setNotification(null);
-            // If it was a message notification, maybe go to list? 
-            // For now, default to notifications tab as requested previously
             setView('notifications');
           }}
         />
       )}
 
       {/* CTA Modal Layer */}
-      <CtaModal isOpen={showCta} onClose={() => setShowCta(false)} />
+      <CtaModal 
+        isOpen={showCta} 
+        onClose={() => setShowCta(false)} 
+        isLocked={isCtaLocked}
+      />
 
       {renderContent()}
     </div>

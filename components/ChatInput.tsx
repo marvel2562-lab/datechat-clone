@@ -37,7 +37,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, disabled })
   const hasText = message.trim().length > 0;
 
   return (
-    <div className="bg-white border-t border-gray-200 px-3 py-2 flex items-center gap-2 sticky bottom-0 z-50">
+    // Changed: Removed 'sticky bottom-0'. Added shrink-0 and pb-[env(safe-area-inset-bottom)]
+    <div className="bg-white border-t border-gray-200 px-3 py-2 flex items-center gap-2 z-50 shrink-0 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
       <button className="text-gray-400 hover:text-gray-600 p-1">
         <Smile className="w-6 h-6" />
       </button>

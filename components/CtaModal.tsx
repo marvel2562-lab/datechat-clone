@@ -3,16 +3,27 @@ import { ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface CtaModalProps {
   isOpen: boolean;
-  onClose: () => void; // Optional, in case we want to allow closing (usually clickbait modals are hard to close)
+  onClose: () => void;
+  isLocked?: boolean;
 }
 
-export const CtaModal: React.FC<CtaModalProps> = ({ isOpen, onClose }) => {
+export const CtaModal: React.FC<CtaModalProps> = ({ isOpen, onClose, isLocked }) => {
   if (!isOpen) return null;
+
+  const handleBackdropClick = () => {
+    // Only close if NOT locked
+    if (!isLocked) {
+      onClose();
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
-      {/* Backdrop with blur */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
+      {/* Backdrop with blur - conditionally clickable */}
+      <div 
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+        onClick={handleBackdropClick}
+      ></div>
       
       {/* Modal Content */}
       <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-300">
