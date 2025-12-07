@@ -6,12 +6,12 @@ interface SearchViewProps {
 
 export const SearchView: React.FC<SearchViewProps> = ({ onTriggerCta }) => {
   const recommendations = [
-    { id: 1, name: 'Anna', age: 29, img: 'https://picsum.photos/id/342/200/300' },
-    { id: 2, name: 'Eva', age: 34, img: 'https://picsum.photos/id/338/200/300' },
+    { id: 1, name: 'Anna', age: 36, img: '/6.jpg' },
+    { id: 2, name: 'Eva', age: 40, img: '/9.jpg' },
     { id: 3, name: 'Karolína', age: 25, img: 'https://picsum.photos/id/64/200/300' },
-    { id: 4, name: 'Marta', age: 31, img: 'https://picsum.photos/id/447/200/300' },
-    { id: 5, name: 'Zuzka', age: 22, img: 'https://picsum.photos/id/65/200/300' },
-    { id: 6, name: 'Anežka', age: 38, img: 'https://picsum.photos/id/433/200/300' },
+    { id: 4, name: 'Marta', age: 54, img: '/11.jpg' },
+    { id: 5, name: 'Zuzka', age: 41, img: '/10.jpg' },
+    { id: 6, name: 'Anežka', age: 38, img: '/12.jpg' },
   ];
 
   return (

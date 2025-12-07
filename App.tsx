@@ -33,60 +33,60 @@ const PENDING_CHATS_POOL: ChatListItem[] = [
   {
     id: 'katerina',
     name: 'Katerina',
-    age: 28,
+    age: 39,
     distance: 10,
     isOnline: true,
-    avatarUrl: 'https://picsum.photos/id/342/200/200',
+    avatarUrl: '/1.jpg',
     lastMessageTime: '1 min',
     unreadCount: 1
   },
   {
     id: 'hana',
     name: 'Hana',
-    age: 31,
+    age: 38,
     distance: 'Líšeň, Jihomoravský kraj',
     isOnline: true,
-    avatarUrl: 'https://picsum.photos/id/447/200/200',
+    avatarUrl: '/2.jpg',
     lastMessageTime: 'teď',
     unreadCount: 1
   },
   {
     id: 'kayla',
     name: 'Kayla',
-    age: 29,
+    age: 33,
     distance: 'Maloměřice, Jihomoravský kraj',
     isOnline: true,
-    avatarUrl: 'https://picsum.photos/id/338/200/200',
+    avatarUrl: '/3.jpg',
     lastMessageTime: 'teď',
     specialNotification: '21'
   },
   {
     id: 'monika',
     name: 'Monika',
-    age: 27,
+    age: 42,
     distance: 'Maloměřice, Jihomoravský kraj',
     isOnline: true,
-    avatarUrl: 'https://picsum.photos/id/331/200/200',
+    avatarUrl: '/4.jpg',
     lastMessageTime: '2 min',
     unreadCount: 1
   },
   {
     id: 'radka',
     name: 'radkakolbuchq7k',
-    age: 35,
+    age: 27,
     distance: 25,
     isOnline: true,
-    avatarUrl: 'https://picsum.photos/id/433/200/200',
+    avatarUrl: '/5.jpg',
     lastMessageTime: '5 min',
     unreadCount: 1
   },
   {
     id: 'rosik',
     name: 'rosikzle4m',
-    age: 40,
+    age: 48,
     distance: 30,
     isOnline: false,
-    avatarUrl: 'https://picsum.photos/id/399/200/200',
+    avatarUrl: '/7.jpg',
     lastMessageTime: '8 min'
   }
 ];
