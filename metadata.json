@@ -1,0 +1,8 @@
+{
+  "name": "DateChat Clone",
+  "description": "A high-fidelity clone of a dating chat interface with AI-powered responses.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
